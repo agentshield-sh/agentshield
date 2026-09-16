@@ -1,0 +1,8 @@
+{
+  "name": "vulnerable-tree",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "minimist": "0.0.8"
+  }
+}

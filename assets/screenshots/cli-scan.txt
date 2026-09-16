@@ -1,0 +1,34 @@
+
+AgentShield · security audit
+~/Projects/agent-workspace · 2026-08-24 17:39 UTC
+
+  AT RISK
+  1 critical or high finding needs attention now.
+
+  0 critical   1 high   3 medium   3 low   5 info
+
+Do this first
+
+  HIGH    An agent is configured to skip execution safeguards
+          ~/.codex/config.toml
+          → Keep the default permission mode for daily use and reserve
+            full-access modes for disposable, isolated environments.
+
+  MEDIUM  A remote MCP server is configured
+          ~/.claude.json
+          → Confirm you control or trust this endpoint, review what the agent is
+            allowed to send it, and remove endpoints you no longer use.
+
+  MEDIUM  A skill pre-approves a high-impact command
+          ~/.claude/skills/deploy/SKILL.md
+          → Drop the pre-approval so these commands still require confirmation,
+            or narrow the pattern to the exact arguments the skill needs.
+
+Coverage
+
+  Secrets         clear
+  Network         clear
+  Configuration   3 to review
+  Skills          1 to review
+  Packages        3 to review
+  Tooling         clear

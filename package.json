@@ -1,0 +1,63 @@
+{
+  "name": "agent-shield",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Security audit for your AI agents and the machine they run on: exposed secrets, risky agent and MCP config, untrusted skills, network exposure, and npm package risk.",
+  "bin": {
+    "agentshield": "packages/cli/src/index.js"
+  },
+  "packageManager": "npm@11.9.0",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agentshield-sh/agentshield.git"
+  },
+  "homepage": "https://github.com/agentshield-sh/agentshield#readme",
+  "bugs": {
+    "url": "https://github.com/agentshield-sh/agentshield/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "check": "npm test",
+    "scan": "node packages/cli/src/index.js scan",
+    "scan:concise": "node packages/cli/src/index.js scan --concise",
+    "report:json": "node packages/cli/src/index.js scan --output=agentshield-report.json",
+    "report:md": "node packages/cli/src/index.js scan --format=md --output=agentshield-report.md",
+    "dashboard": "node packages/cli/src/index.js dashboard",
+    "preupdate": "node packages/cli/src/index.js preupdate",
+    "prepublishOnly": "npm run check",
+    "verify:e2e": "bash scripts/verify-e2e.sh"
+  },
+  "files": [
+    "packages/cli/src",
+    "packages/core/src",
+    "packages/dashboard-server/src",
+    "SECURITY.md",
+    "CHANGELOG.md",
+    "TERMS.md",
+    "README.md",
+    "LICENSE",
+    "LICENSING.md",
+    "package.json",
+    "docs"
+  ],
+  "keywords": [
+    "security",
+    "cli",
+    "local-security",
+    "secrets",
+    "dependencies",
+    "mcp",
+    "ai-agents",
+    "openclaw"
+  ],
+  "license": "AGPL-3.0-or-later"
+}

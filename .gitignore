@@ -1,0 +1,8 @@
+node_modules
+dist
+.env
+.DS_Store
+*.tgz
+agentshield-report.json
+agentshield-report.md
+*.bun-build

@@ -1,0 +1,87 @@
+name: Release
+
+# Cut a release by pushing a version tag:
+#
+#   npm version 0.1.0 --no-git-tag-version
+#   git commit -am "release: 0.1.0" && git tag v0.1.0 && git push --follow-tags
+#
+# bun cross-compiles every target from a single runner, so one job covers all
+# four platforms. Nothing is published unless the full test suite passes first.
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - run: npm ci
+
+      - name: Verify
+        run: |
+          npm run check
+          npm audit --audit-level=high
+
+      - name: Check the tag matches package.json
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          pkg="$(node -p "require('./package.json').version")"
+          if [ "$tag" != "$pkg" ]; then
+            echo "tag $GITHUB_REF_NAME does not match package.json version $pkg" >&2
+            exit 1
+          fi
+
+      - name: Build binaries
+        run: ./scripts/build-release.sh
+
+      - name: Verify the built binary reports the tagged version
+        run: |
+          built="$(./dist/release/agentshield-linux-x64 --version)"
+          pkg="$(node -p "require('./package.json').version")"
+          if [ "$built" != "$pkg" ]; then
+            echo "binary reports '$built', expected '$pkg' — the version was not baked in" >&2
+            exit 1
+          fi
+
+      - name: Render the Homebrew formula
+        run: ./scripts/render-homebrew.sh
+
+      - name: Publish the GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/release/agentshield-darwin-arm64
+            dist/release/agentshield-darwin-x64
+            dist/release/agentshield-linux-arm64
+            dist/release/agentshield-linux-x64
+            dist/release/SHA256SUMS
+          generate_release_notes: true
+
+      - name: Publish to npm
+        if: ${{ env.NPM_TOKEN != '' }}
+        run: npm publish --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Upload the rendered formula
+        uses: actions/upload-artifact@v4
+        with:
+          name: homebrew-formula
+          path: dist/release/agentshield.rb
