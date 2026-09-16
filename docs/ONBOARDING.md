@@ -7,13 +7,13 @@ This guide is for someone installing AgentShield for the first time and trying t
 Global install:
 
 ```bash
-npm install -g agent-shield
+npm install -g agentshield-sh
 ```
 
 No-install run:
 
 ```bash
-npx agent-shield scan
+npx agentshield-sh scan
 ```
 
 Repository/dev install:

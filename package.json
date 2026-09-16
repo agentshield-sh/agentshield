@@ -1,5 +1,5 @@
 {
-  "name": "agent-shield",
+  "name": "agentshield-sh",
   "version": "0.1.0",
   "private": false,
   "description": "Security audit for your AI agents and the machine they run on: exposed secrets, risky agent and MCP config, untrusted skills, network exposure, and npm package risk.",

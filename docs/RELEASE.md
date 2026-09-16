@@ -2,7 +2,7 @@
 
 ## Required Decisions
 
-- Confirm the npm package name is still `agent-shield` and unclaimed.
+- Confirm the npm package name is still `agentshield-sh` and unclaimed.
 - Confirm the executable remains `agentshield`.
 - Have qualified legal counsel review `TERMS.md` and the website `/terms` page.
 - Publish a real legal/privacy contact and governing-law terms if required for the launch jurisdiction.
@@ -30,7 +30,7 @@ Then install the packed tarball into an empty directory and run it from there:
 ```bash
 npm pack
 mkdir -p /tmp/agentshield-smoke && cd /tmp/agentshield-smoke
-npm install ../path/to/agent-shield-0.1.0.tgz
+npm install ../path/to/agentshield-sh-0.1.0.tgz
 ./node_modules/.bin/agentshield --version
 ./node_modules/.bin/agentshield scan --concise
 ```
@@ -60,7 +60,7 @@ npm whoami
 Confirm the selected package name immediately before launch:
 
 ```bash
-npm view agent-shield name version
+npm view agentshield-sh name version
 ```
 
 An `E404` means no public package currently exists under that name. Availability is not reserved until publication succeeds.
@@ -78,8 +78,8 @@ npm publish --access public
 Run from a clean temporary directory:
 
 ```bash
-npx agent-shield scan --concise
-npx agent-shield dashboard
+npx agentshield-sh scan --concise
+npx agentshield-sh dashboard
 ```
 
 Verify the dashboard binds to `127.0.0.1` and opens at `http://127.0.0.1:4173`.

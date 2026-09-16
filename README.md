@@ -4,7 +4,7 @@
 
 <p>
   <a href="https://github.com/agentshield-sh/agentshield/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/agentshield-sh/agentshield/ci.yml?branch=main&style=flat-square&label=CI&labelColor=0d0d0d&color=9fe870"></a>
-  <a href="https://www.npmjs.com/package/agent-shield"><img alt="npm" src="https://img.shields.io/npm/v/agent-shield?style=flat-square&labelColor=0d0d0d&color=f1b545"></a>
+  <a href="https://www.npmjs.com/package/agentshield-sh"><img alt="npm" src="https://img.shields.io/npm/v/agentshield-sh?style=flat-square&labelColor=0d0d0d&color=f1b545"></a>
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-AGPL--3.0-blue?style=flat-square&labelColor=0d0d0d&color=8ab4f8"></a>
   <img alt="Node" src="https://img.shields.io/badge/node-%3E%3D20.9-brightgreen?style=flat-square&labelColor=0d0d0d&color=9fe870">
   <img alt="Platform" src="https://img.shields.io/badge/platform-macOS%20%7C%20Linux-lightgrey?style=flat-square&labelColor=0d0d0d&color=8a8a8a">
@@ -30,7 +30,7 @@ OpenClaw, Claude Code, Codex, Cursor, and the MCP servers around them — plus t
 secrets, ports, and npm packages sitting next to them.
 
 ```bash
-npx agent-shield scan
+npx agentshield-sh scan
 ```
 
 ```text
@@ -121,13 +121,13 @@ without uploading anything.
 **Run it without installing:**
 
 ```bash
-npx agent-shield scan
+npx agentshield-sh scan
 ```
 
 **Or install globally:**
 
 ```bash
-npm install -g agent-shield
+npm install -g agentshield-sh
 agentshield scan
 ```
 
@@ -196,7 +196,7 @@ agentshield scan --skillspector --category=skill-risk --all
 Notes worth knowing before you turn it on:
 
 - **It is opt-in, and stays that way.** SkillSpector is a separate Python
-  install, so a default `npx agent-shield scan` must not depend on it. Without
+  install, so a default `npx agentshield-sh scan` must not depend on it. Without
   the flag, nothing changes. With the flag and no engine installed, the report
   says so rather than looking clean.
 - **Static by default.** AgentShield runs it with `--no-llm`, so the deep scan
