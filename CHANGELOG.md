@@ -109,7 +109,7 @@ First public release.
 
 - globally installed packages are checked for being outdated, not for known
   vulnerabilities; `npm audit` resolves a project graph, not the global install
-  set. Closing that gap is the first item on the README roadmap
+  set. Closing that gap is on the README roadmap under the planned hosted services
 - pre-update advisor is npm-only
 - network checks focus on TCP listeners
 - config and secret coverage is strongest for known agent/tool patterns

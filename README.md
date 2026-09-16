@@ -168,7 +168,8 @@ and a **recommendation**. Nothing is a bare score.
 > vulnerabilities — npm cannot audit the global install set as a graph.
 >
 > The report says so in its own output rather than looking clean. Closing that
-> gap is the first item on the [roadmap](#roadmap).
+> gap is on the [roadmap](#roadmap) as a hosted advisory lookup (AgentShield
+> Pro, not yet available).
 
 ### Deep skill analysis (optional)
 
@@ -482,9 +483,6 @@ own; the roadmap adds to it and never gates it.
 
 **Scanner (open source, this repository)**
 
-- Vulnerability checks for globally installed packages. `npm audit` resolves a
-  project graph, so the global tool set is only checked for being outdated
-  today; closing that gap needs an advisory lookup the scanner can call.
 - Package ecosystems beyond npm.
 - More agent runtimes and config formats as they appear, and new detections
   for the [threat catalog](docs/THREAT-CATALOG.md).
@@ -493,6 +491,10 @@ own; the roadmap adds to it and never gates it.
 
 **Hosted services (AgentShield Pro, not yet available)**
 
+- Vulnerability checks for globally installed packages. `npm audit` resolves a
+  project graph, so the global tool set is only checked for being outdated
+  today; closing that gap needs a maintained advisory service the scanner
+  can call.
 - Scan history per machine: a *since last scan* line and `NEW` tags on
   findings that were not there before.
 - Email alerts when a new critical or high finding appears.
